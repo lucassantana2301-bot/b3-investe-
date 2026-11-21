@@ -1,0 +1,25 @@
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# Banco Access local: dados financeiros pessoais nunca vão para o git
+*.accdb
+*.laccdb
+*.mdb
+
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json

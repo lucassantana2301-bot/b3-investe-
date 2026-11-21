@@ -1,0 +1,505 @@
+/*
+ * Carteira B3
+ * Papel: cinza-azulado de formulário em via carbono. Tinta: azul-marinho.
+ * Verde/vermelho só para resultado. O DARF é a única peça com moldura de formulário.
+ */
+:root {
+  --paper: #e9eef2;
+  --sheet: #f7f9fb;
+  --ink: #14213d;
+  --ink-soft: #4a5a75;
+  --rule: #b9c6d3;
+  --gain: #17714a;
+  --loss: #a3241c;
+  --stamp: #c9a227; /* faixa da guia, lembra o carimbo de autenticação bancária */
+
+  --font: "Archivo", system-ui, sans-serif;
+  --step--1: 0.833rem;
+  --step-0: 1rem;
+  --step-1: 1.2rem;
+  --step-2: 1.44rem;
+  --step-5: clamp(2.6rem, 6vw, 4.3rem);
+  --space: 1.5rem;
+
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: var(--step-0);
+  line-height: 1.5;
+  font-variant-numeric: tabular-nums;
+}
+
+h1,
+h2 {
+  margin: 0;
+  line-height: 1.15;
+  font-weight: 650;
+}
+
+h2 {
+  font-size: var(--step-1);
+}
+
+:focus-visible {
+  outline: 3px solid var(--stamp);
+  outline-offset: 2px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.muted {
+  color: var(--ink-soft);
+  font-weight: 400;
+  font-size: var(--step--1);
+}
+
+.tone-up {
+  color: var(--gain);
+}
+.tone-down,
+.neg {
+  color: var(--loss);
+}
+
+/* Estrutura */
+
+.page {
+  max-width: 76rem;
+  margin: 0 auto;
+  padding: var(--space);
+}
+
+.masthead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space);
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--ink);
+  margin-bottom: calc(var(--space) * 1.5);
+}
+
+.masthead__title {
+  font-size: var(--step-2);
+  font-stretch: 112%;
+  font-weight: 750;
+}
+
+.masthead__year {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--ink-soft);
+  font-size: var(--step--1);
+}
+
+.layout {
+  display: grid;
+  gap: calc(var(--space) * 1.5) calc(var(--space) * 2);
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  grid-template-areas:
+    "worth darf"
+    "positions darf"
+    "form darf";
+  align-items: start;
+}
+
+.worth {
+  grid-area: worth;
+}
+.darf {
+  grid-area: darf;
+}
+.positions {
+  grid-area: positions;
+}
+.trade-form {
+  grid-area: form;
+}
+
+@media (max-width: 60rem) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "worth" "darf" "positions" "form";
+  }
+}
+
+/* Patrimônio */
+
+.worth__value {
+  margin: 0 0 1rem;
+  font-size: var(--step-5);
+  font-weight: 800;
+  font-stretch: 125%;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.worth__facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 0.75rem 1.5rem;
+  margin: 0 0 1.25rem;
+}
+
+.fact dt {
+  color: var(--ink-soft);
+  font-size: var(--step--1);
+}
+.fact dd {
+  margin: 0;
+  font-size: var(--step-1);
+  font-weight: 600;
+}
+
+.allocation {
+  margin: 0;
+}
+.allocation__bar {
+  display: flex;
+  height: 0.75rem;
+  gap: 2px;
+}
+.allocation__seg {
+  flex-basis: 0;
+  min-width: 4px;
+}
+.allocation__seg--STOCK {
+  background: var(--ink);
+}
+.allocation__seg--FII {
+  background: #5b7fa8;
+}
+.allocation__seg--ETF {
+  background: #9bb0c7;
+}
+.allocation__seg--BDR {
+  background: var(--stamp);
+}
+.allocation__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+  margin-top: 0.5rem;
+  font-size: var(--step--1);
+  color: var(--ink-soft);
+}
+.swatch {
+  display: inline-block;
+  width: 0.7rem;
+  height: 0.7rem;
+  vertical-align: -0.05rem;
+}
+
+/* DARF: a peça de destaque */
+
+.darf {
+  background: var(--sheet);
+  border: 2px solid var(--ink);
+  border-top: 10px solid var(--stamp);
+  padding: 1.25rem;
+}
+
+.darf__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.darf__issuer {
+  margin: 0 0 0.25rem;
+  font-size: var(--step--1);
+  font-stretch: 88%;
+  color: var(--ink-soft);
+}
+
+.darf__title {
+  font-size: var(--step-2);
+  font-stretch: 112%;
+}
+
+.darf__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0 0 1rem;
+  border-top: 1px solid var(--ink);
+  border-left: 1px solid var(--ink);
+}
+
+.darf__field {
+  padding: 0.5rem 0.75rem 0.6rem;
+  border-right: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+}
+.darf__field dt {
+  font-size: var(--step--1);
+  font-stretch: 88%;
+  color: var(--ink-soft);
+}
+.darf__field dd {
+  margin: 0.15rem 0 0;
+  font-size: var(--step-1);
+  font-weight: 600;
+}
+.darf__field--total {
+  grid-column: 1 / -1;
+  background: #fff;
+}
+.darf__amount {
+  font-size: var(--step-5) !important;
+  font-weight: 800 !important;
+  font-stretch: 125%;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  text-align: right;
+}
+
+.darf__note {
+  margin: 0 0 0.75rem;
+  font-size: var(--step--1);
+  max-width: 60ch;
+}
+
+.darf--empty p {
+  margin-bottom: 0;
+}
+
+/* Tabelas */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--step--1);
+}
+th,
+td {
+  padding: 0.5rem 0.5rem;
+  text-align: right;
+  border-bottom: 1px solid var(--rule);
+  white-space: nowrap;
+}
+th:first-child,
+td:first-child {
+  text-align: left;
+  padding-left: 0;
+}
+thead th {
+  color: var(--ink-soft);
+  font-weight: 500;
+  border-bottom-color: var(--ink);
+}
+tbody th {
+  font-weight: 650;
+}
+tfoot th,
+tfoot td {
+  border-bottom: 0;
+  font-weight: 600;
+}
+
+.darf__table th,
+.darf__table td {
+  white-space: normal;
+  padding-inline: 0.35rem;
+}
+.darf__table th:last-child,
+.darf__table td:last-child {
+  padding-right: 0;
+  white-space: nowrap;
+}
+.darf__table thead th {
+  vertical-align: bottom;
+}
+
+.sub {
+  display: block;
+  color: var(--ink-soft);
+  font-weight: 400;
+  font-size: 0.75rem;
+}
+
+.trade-form {
+  max-width: 34rem;
+}
+
+.positions h2 {
+  margin-bottom: 0.75rem;
+}
+.table-scroll {
+  overflow-x: auto;
+}
+
+/* Formulários */
+
+select,
+input {
+  font: inherit;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  padding: 0.45rem 0.55rem;
+  min-height: 2.5rem;
+}
+input:user-invalid {
+  border-color: var(--loss);
+}
+
+button {
+  font: inherit;
+  font-weight: 650;
+  color: var(--sheet);
+  background: var(--ink);
+  border: 0;
+  border-radius: 2px;
+  padding: 0.65rem 1.1rem;
+  min-height: 2.75rem;
+  cursor: pointer;
+}
+button:hover {
+  background: #23345a;
+}
+button:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.trade-form {
+  display: grid;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rule);
+  gap: 0.85rem;
+}
+.trade-form label {
+  display: grid;
+  gap: 0.25rem;
+  font-size: var(--step--1);
+  color: var(--ink-soft);
+}
+.trade-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+.trade-form__side {
+  display: flex;
+  gap: 1.25rem;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+.trade-form__side label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--ink);
+  font-size: var(--step-0);
+}
+.trade-form__side input {
+  min-height: auto;
+  accent-color: var(--ink);
+}
+.trade-form__status {
+  margin: 0;
+  min-height: 1.5em;
+  font-size: var(--step--1);
+}
+.trade-form__status--saved {
+  color: var(--gain);
+}
+.trade-form__status--error {
+  color: var(--loss);
+}
+
+/* Avisos */
+
+.notice {
+  font-size: var(--step--1);
+  color: var(--ink-soft);
+}
+.notice--error {
+  color: var(--loss);
+}
+.notice button {
+  margin-left: 0.5rem;
+  padding: 0.3rem 0.7rem;
+  min-height: auto;
+}
+
+.key-prompt {
+  max-width: 26rem;
+  margin: 15vh auto;
+  padding: var(--space);
+  display: grid;
+  gap: 1rem;
+  background: var(--sheet);
+  border: 2px solid var(--ink);
+  border-top: 10px solid var(--stamp);
+}
+.key-prompt label {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.colophon {
+  margin-top: calc(var(--space) * 2);
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule);
+  font-size: var(--step--1);
+  color: var(--ink-soft);
+  max-width: 70ch;
+}
+
+.trade-form input,
+.trade-form select {
+  width: 100%;
+  min-width: 0;
+}
+
+@media (max-width: 40rem) {
+  .page {
+    padding: 1rem;
+  }
+  .darf {
+    padding: 1rem;
+  }
+  .darf__head {
+    flex-direction: column;
+  }
+  .darf__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .darf__field--due {
+    grid-column: 1 / -1;
+  }
+  .worth__facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
