@@ -1,9 +1,9 @@
 {
   "name": "b3-portfolio-tracker",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Portfolio tracker para a B3 com apura\u00e7\u00e3o mensal de IR, arquitetura hexagonal e adapters Postgres/Microsoft Access.",
+  "description": "Portfolio tracker para a B3 com apuração mensal de IR, arquitetura hexagonal e adapters Postgres/Microsoft Access.",
   "license": "MIT",
   "workspaces": [
     "packages/core",

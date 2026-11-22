@@ -5,6 +5,7 @@
 **Carteira de investimentos da B3 com preço médio, proventos e apuração mensal do Imposto de Renda, gerando o DARF pronto para pagar.**
 
 [![CI](https://github.com/lucassantana2301-bot/b3-investe-/actions/workflows/ci.yml/badge.svg)](https://github.com/lucassantana2301-bot/b3-investe-/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/lucassantana2301-bot/b3-investe-?sort=semver)](https://github.com/lucassantana2301-bot/b3-investe-/releases)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6?logo=typescript&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-22-339933?logo=nodedotjs&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white)
@@ -197,6 +198,10 @@ Os cenários tributários são testados com valores calculados à mão: isençã
 - [ ] Eventos corporativos com ajuste automático de preço médio
 - [ ] Rentabilidade por TWR (time-weighted return) e comparação com IBOV
 - [ ] Geração do relatório anual para a declaração (bens e direitos, isentos, renda variável)
+
+## Contribuindo
+
+Veja o [guia de contribuição](CONTRIBUTING.md), o [CHANGELOG](CHANGELOG.md) e a [política de segurança](SECURITY.md). Os itens do roadmap estão abertos como [issues](../../issues).
 
 ## Licença
 
