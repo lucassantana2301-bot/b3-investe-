@@ -189,7 +189,7 @@ Os cenários tributários são testados com valores calculados à mão: isençã
 
 - Mercado à vista apenas: opções, termo, futuros e aluguel de ações ficam fora.
 - Eventos corporativos (desdobramento, grupamento, bonificação, subscrição) ainda precisam ser lançados como operações manuais.
-- O vencimento do DARF considera fins de semana, mas não feriados nacionais.
+- O vencimento do DARF considera fins de semana e feriados bancários nacionais (incluindo Carnaval, Sexta-feira Santa e Corpus Christi), mas não feriados estaduais ou municipais.
 - O cálculo é uma estimativa: confira no [Sicalc da Receita Federal](https://sicalc.receita.economia.gov.br/) antes de pagar.
 
 ## Roadmap

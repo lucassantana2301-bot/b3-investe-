@@ -1,5 +1,12 @@
 import { describe, expect, it } from 'vitest';
-import { darfDueDate, type YearMonth } from '../src/domain/calendar.js';
+import {
+  darfDueDate,
+  easterSunday,
+  isBusinessDay,
+  nationalBankHolidays,
+  type IsoDate,
+  type YearMonth,
+} from '../src/domain/calendar.js';
 import { buildLedger } from '../src/domain/ledger.js';
 import { computeTaxReports } from '../src/domain/tax.js';
 import { trade } from './helpers.js';
@@ -102,5 +109,31 @@ describe('darfDueDate', () => {
     // Maio/2026 termina num domingo: vence sexta, 29/05.
     expect(darfDueDate('2026-04' as YearMonth)).toBe('2026-05-29');
     expect(darfDueDate('2026-12' as YearMonth)).toBe('2027-01-29');
+  });
+});
+
+describe('calendário de dias úteis', () => {
+  it('calcula a Páscoa em anos conhecidos', () => {
+    expect(easterSunday(2024)).toBe('2024-03-31');
+    expect(easterSunday(2026)).toBe('2026-04-05');
+    expect(easterSunday(2028)).toBe('2028-04-16');
+    expect(easterSunday(2029)).toBe('2029-04-01');
+  });
+
+  it('inclui feriados móveis e a Consciência Negra a partir de 2024', () => {
+    const h2026 = nationalBankHolidays(2026);
+    for (const date of ['2026-02-16', '2026-02-17', '2026-04-03', '2026-06-04', '2026-11-20']) {
+      expect(h2026.has(date as IsoDate)).toBe(true);
+    }
+    expect(nationalBankHolidays(2023).has('2023-11-20' as IsoDate)).toBe(false);
+    expect(isBusinessDay('2026-04-03' as IsoDate)).toBe(false);
+    expect(isBusinessDay('2026-04-06' as IsoDate)).toBe(true);
+  });
+
+  it('antecipa o vencimento quando o último dia útil cai em feriado', () => {
+    // 29/02/2028 é terça de Carnaval e 28/02 é segunda de Carnaval: vence na sexta, 25/02.
+    expect(darfDueDate('2028-01' as YearMonth)).toBe('2028-02-25');
+    // 31/03/2029 é sábado e 30/03 é Sexta-feira Santa: vence na quinta, 29/03.
+    expect(darfDueDate('2029-02' as YearMonth)).toBe('2029-03-29');
   });
 });
