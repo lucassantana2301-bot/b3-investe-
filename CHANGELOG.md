@@ -7,6 +7,14 @@ O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e 
 
 ## [Não lançado]
 
+## [1.0.1] - 2026-11-22
+
+### Corrigido
+
+- Vencimento do DARF agora desconsidera feriados bancários nacionais: fixos, Consciência Negra (desde 2024),
+  segunda e terça de Carnaval, Sexta-feira Santa e Corpus Christi. Antes, um último dia útil que caísse em
+  feriado (ex.: Carnaval em 29/02/2028) gerava data de vencimento errada. ([#4](https://github.com/lucassantana2301-bot/b3-investe-/issues/4))
+
 ## [1.0.0] - 2026-11-22
 
 Primeira versão estável.
@@ -26,5 +34,6 @@ Primeira versão estável.
 - **Qualidade**: CI com lint, tipos, testes de domínio, testes de integração com PostgreSQL real,
   ruff e pytest no serviço Python, e build das imagens.
 
-[Não lançado]: https://github.com/lucassantana2301-bot/b3-investe-/compare/v1.0.0...HEAD
+[Não lançado]: https://github.com/lucassantana2301-bot/b3-investe-/compare/v1.0.1...HEAD
+[1.0.1]: https://github.com/lucassantana2301-bot/b3-investe-/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/lucassantana2301-bot/b3-investe-/releases/tag/v1.0.0
